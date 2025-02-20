@@ -17,7 +17,8 @@ What you need to build and install.
 git
 cmake (>= 3.10)
 c++ 17 compatible compiler (gcc >= 8, Ubuntu: g++-8)
-boost development headers (for restbed) (Ubuntu: libboost-dev)
+boost development headers (for restbed) (Ubuntu: libboost-dev,
+probably also libboost-system-dev and libboost-thread-dev; if not, libboost-all-dev)
 libcurl (Ubuntu: libcurl4-openssl-dev)
 openssl (Ubuntu: libssl-dev)
 gmp (Ubuntu: libgmp-dev)
@@ -44,7 +45,7 @@ more submodules than necessary.
 
 ### Build
 
-#### OpenSSL (only on Arch)
+#### OpenSSL (only on Arch, or later Debian/Ubuntu versions)
 
 As mentioned above, on Arch you may need to manually compile (static) openssl
 libs:
