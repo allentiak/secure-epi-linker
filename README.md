@@ -45,7 +45,7 @@ more submodules than necessary.
 
 ### Build
 
-#### OpenSSL (only on Arch, or later Debian/Ubuntu versions)
+#### Static OpenSSL (only on Arch, or later Debian/Ubuntu versions)
 
 As mentioned above, on Arch you may need to manually compile (static) openssl
 libs:
@@ -68,6 +68,44 @@ make -j$(nproc) sel
 
 Omit or customize `-j` if you don't want to build in parallel with the maximum
 amount of threads available on your system.
+
+### Alternative Build intructionis (WIP)
+
+#### Other steps (WIP)
+
+##### MIRACL
+
+```
+cd extern/ABY/extern/ENCRYPTO_utils/extern/MIRACL
+cmake .
+make
+```
+
+##### Force-Updating all submodules
+```
+git submodule update --init --force
+```
+
+```
+% more scripts/init_submodules.sh
+#!/bin/sh
+
+echo Switching to repo toplevel directory
+set -x -e
+cd $(git rev-parse --show-toplevel)
+
+git submodule update --init
+
+cd extern/restbed
+git submodule update --init
+
+cd ../ABY
+git submodule update --init # ENCRYPTO_utils and OTExtension
+cd extern/ENCRYPTO_utils
+git submodule update --init # MIRACL
+
+```
+
 
 ### Running
 
@@ -196,7 +234,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://git.compbiol.bio.tu-darmstadt.de/kussel/secure_epilink/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://git.compbiol.bio.tu-darmstadt.de/kussel/secure_epilink/tags).
 
 ## Authors
 
@@ -212,4 +250,3 @@ This project is licensed under the AGPL License - see the [LICENSE](LICENSE) fil
 
 * Thanks to [Lennart Braun](https://github.com/lenerd/ABY-build) for a sane ABY build process
 * This work has been supported by the German Federal Ministry of Education and Research (BMBF) and by the Hessian State Ministry for Higher Education, Research and the Arts (HMWK) within the [HiGHmed Consortium](http://www.highmed.org) and [CRISP](http://www.crisp-da.de).
-
